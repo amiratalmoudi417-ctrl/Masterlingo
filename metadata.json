@@ -1,0 +1,8 @@
+{
+  "name": "Remix EnglishPath — B2 to C2 English Mastery",
+  "description": "Comprehensive self-learning dashboard and practice platform for English learners advancing from B2 to C1 and C2.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

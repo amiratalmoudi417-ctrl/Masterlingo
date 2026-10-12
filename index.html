@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnglishPath — B2 to C2 English Mastery</title>
+  <meta name="description" content="Comprehensive self-learning dashboard and practice platform for English learners advancing from B2 to C1 and C2." />
+  <meta property="og:title" content="EnglishPath — B2 to C2 English Mastery" />
+  <meta property="og:description" content="Comprehensive self-learning dashboard and practice platform for English learners advancing from B2 to C1 and C2." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- Single stylesheet for vanilla architecture -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Backdrop for mobile drawer -->
+    <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="appSidebar" class="app-sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <a href="#dashboard" class="brand-logo" id="brandLink">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+              <path d="M6 6h10"></path>
+              <path d="M6 10h10"></path>
+            </svg>
+          </div>
+          <div>
+            <div>EnglishPath</div>
+            <div class="brand-badge">B2 → C2 MASTERY</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="sidebar-scroll">
+        <div>
+          <div class="nav-group-title">Navigation</div>
+          <ul class="nav-list">
+            <li>
+              <a href="#dashboard" class="nav-link active" data-view="dashboard">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a href="#all-resources" class="nav-link" data-view="all-resources">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m21 21-4.3-4.3"/><circle cx="11" cy="11" r="8"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                <span>All Resources</span>
+                <span class="nav-badge-count" id="sidebarTotalCount">0</span>
+              </a>
+            </li>
+            <li>
+              <a href="#pdf-library" class="nav-link" data-view="pdf-library">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
+                <span>PDF Library</span>
+                <span class="nav-badge-count" id="sidebarPdfCount">0</span>
+              </a>
+            </li>
+            <li>
+              <a href="#my-progress" class="nav-link" data-view="my-progress">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <span>My Progress</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="nav-group-title">Core Skills</div>
+          <ul class="nav-list">
+            <li>
+              <a href="#reading" class="nav-link" data-view="reading">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                <span>Reading</span>
+                <span class="nav-badge-count" id="navCountReading">0</span>
+              </a>
+            </li>
+            <li>
+              <a href="#listening" class="nav-link" data-view="listening">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+                <span>Listening</span>
+                <span class="nav-badge-count" id="navCountListening">0</span>
+              </a>
+            </li>
+            <li>
+              <a href="#writing" class="nav-link" data-view="writing">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                <span>Writing</span>
+                <span class="nav-badge-count" id="navCountWriting">0</span>
+              </a>
+            </li>
+            <li>
+              <a href="#speaking" class="nav-link" data-view="speaking">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                <span>Speaking</span>
+                <span class="nav-badge-count" id="navCountSpeaking">0</span>
+              </a>
+            </li>
+            <li>
+              <a href="#vocabulary" class="nav-link" data-view="vocabulary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                <span>Vocabulary</span>
+                <span class="nav-badge-count" id="navCountVocabulary">0</span>
+              </a>
+            </li>
+            <li>
+              <a href="#grammar" class="nav-link" data-view="grammar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="4" x2="20" y1="21" y2="21"/><line x1="4" x2="20" y1="3" y2="3"/><line x1="12" x2="12" y1="3" y2="21"/><path d="m17 7-5-5-5 5"/><path d="m17 17-5 5-5-5"/></svg>
+                <span>Grammar</span>
+                <span class="nav-badge-count" id="navCountGrammar">0</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="sidebar-level-card">
+          <div class="sidebar-level-header">
+            <span>Overall Progress</span>
+            <span id="sidebarPercent">0%</span>
+          </div>
+          <div class="sidebar-progress-bar">
+            <div id="sidebarProgressBar" class="sidebar-progress-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Application -->
+    <div class="app-main">
+      <!-- Global Top Header -->
+      <header class="app-header">
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+
+        <div class="header-search-wrapper">
+          <svg class="search-icon-pos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="text" id="globalSearchInput" class="search-input-box" placeholder="Search resources, topics, tags (Press '/' to focus)..." aria-label="Search resources" />
+          <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="header-actions">
+          <!-- Level Selector Filter -->
+          <div class="level-selector-group" role="group" aria-label="Target CEFR Level Filter">
+            <button type="button" class="level-toggle-btn active" data-level="all">All</button>
+            <button type="button" class="level-toggle-btn" data-level="B2">B2</button>
+            <button type="button" class="level-toggle-btn" data-level="C1">C1</button>
+            <button type="button" class="level-toggle-btn" data-level="C2">C2</button>
+          </div>
+
+          <!-- Light / Dark Theme Toggle -->
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme">
+            <!-- Moon Icon (for dark mode) -->
+            <svg id="moonIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <!-- Sun Icon (for light mode) -->
+            <svg id="sunIcon" style="display: none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Body Content Area -->
+      <main class="content-area">
+
+        <!-- ========================================================
+             1. DASHBOARD VIEW
+             ======================================================== -->
+        <section id="viewDashboard" class="view-section active">
+          <!-- Welcome Section -->
+          <div class="dashboard-hero">
+            <div class="hero-header-row">
+              <div class="hero-title-group">
+                <h1>Your journey from B2 to C2</h1>
+                <p class="hero-subtitle">
+                  Autonomous mastery requires focused deliberate practice. Progress across upper-intermediate nuances, advanced syntax, and native-level rhetorical precision.
+                </p>
+              </div>
+            </div>
+
+            <!-- Dynamic Stats Strip calculated from real data -->
+            <div class="stats-grid">
+              <div class="stat-item">
+                <span class="stat-value" id="dashOverallProgress">0%</span>
+                <span class="stat-label">Overall Completion</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="dashCurrentLevel">B2 — C2</span>
+                <span class="stat-label">Active CEFR Filter</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="dashCompletedCount">0</span>
+                <span class="stat-label">Completed Tasks</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value" id="dashSavedCount">0</span>
+                <span class="stat-label">Saved Resources</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Six Skill Cards Grid -->
+          <div class="section-header-row">
+            <h2 class="section-title">Core Language Skills</h2>
+            <button class="section-link-btn" onclick="navigateTo('all-resources')">
+              Browse all library items &rarr;
+            </button>
+          </div>
+
+          <div class="skills-grid" id="dashboardSkillsGrid">
+            <!-- Dynamically populated by script.js -->
+          </div>
+
+          <!-- Secondary Dashboard Grid: Continue Learning + Daily Recommendation -->
+          <div class="dashboard-subgrid">
+            <!-- Continue Learning Card -->
+            <div class="subgrid-card" id="continueLearningContainer">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                Continue Learning
+              </h3>
+              <div class="continue-card-content" id="continueLearningContent">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Daily Learning Recommendation -->
+            <div class="subgrid-card recommendation-card" id="dailyRecommendationCard">
+              <h3>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Today's Recommended Focus
+              </h3>
+              <div class="continue-card-content" id="dailyRecommendationContent">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Saved Bookmarks Quick Section -->
+          <div id="dashboardBookmarksSection" style="margin-bottom: 2.5rem; display: none;">
+            <div class="section-header-row">
+              <h2 class="section-title">Saved Resources</h2>
+              <button class="section-link-btn" onclick="navigateTo('my-progress')">View all saved &rarr;</button>
+            </div>
+            <div class="resource-grid" id="dashboardBookmarksGrid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Quick Access to Downloadable PDFs -->
+          <div class="section-header-row">
+            <h2 class="section-title">Downloadable Worksheets & Study Guides</h2>
+            <button class="section-link-btn" onclick="navigateTo('pdf-library')">View all PDFs &rarr;</button>
+          </div>
+          <div class="pdf-strip-grid" id="dashboardPdfGrid">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- ========================================================
+             2. DEDICATED SKILL VIEW (Reused for Reading, Listening, etc.)
+             ======================================================== -->
+        <section id="viewSkillPage" class="view-section">
+          <!-- Skill Hero Banner -->
+          <div class="skill-hero" id="skillHeroBanner">
+            <div class="skill-hero-top">
+              <div class="skill-hero-icon" id="skillHeroIcon" aria-hidden="true"></div>
+              <div class="skill-hero-meta">
+                <h1 id="skillHeroTitle">Skill</h1>
+                <p class="skill-hero-tagline" id="skillHeroTagline">Tagline</p>
+              </div>
+            </div>
+
+            <!-- Skill Introduction & CEFR Competencies -->
+            <div class="competency-box">
+              <div class="competency-header">CEFR Competencies & Progression</div>
+              <div class="competency-levels-grid" id="skillCompetenciesGrid">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill Filter Controls -->
+          <div class="filter-bar">
+            <!-- Level Filter -->
+            <div class="filter-row">
+              <span class="filter-label">Level:</span>
+              <div class="filter-button-group" id="skillLevelFilterGroup">
+                <button type="button" class="filter-btn active" data-val="all">All Levels</button>
+                <button type="button" class="filter-btn" data-val="B2">B2 — Upper-intermediate</button>
+                <button type="button" class="filter-btn" data-val="C1">C1 — Advanced</button>
+                <button type="button" class="filter-btn" data-val="C2">C2 — Proficient</button>
+              </div>
+            </div>
+
+            <!-- Resource Type Filter -->
+            <div class="filter-row">
+              <span class="filter-label">Type:</span>
+              <div class="filter-button-group" id="skillTypeFilterGroup">
+                <!-- Rendered dynamically based on available types for this skill -->
+              </div>
+            </div>
+
+            <!-- Meta & Sort -->
+            <div class="filter-meta-row">
+              <span id="skillResultCount">Showing 0 resources</span>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <label for="skillSortSelect" style="font-size: 0.75rem;">Sort by:</label>
+                <select id="skillSortSelect" class="sort-select">
+                  <option value="recommended">Recommended</option>
+                  <option value="title">Title (A–Z)</option>
+                  <option value="duration">Duration (Shortest)</option>
+                  <option value="difficulty">Difficulty</option>
+                </select>
+                <button type="button" id="skillResetFiltersBtn" class="reset-filters-btn">Reset filters</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill Resource Cards Grid -->
+          <div class="resource-grid" id="skillResourceGrid">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Skill PDF Worksheets Section -->
+          <div style="margin-top: 3rem;">
+            <div class="section-header-row">
+              <h2 class="section-title">Worksheets & Printable Materials</h2>
+            </div>
+            <div class="pdf-strip-grid" id="skillPdfGrid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             3. ALL RESOURCES VIEW
+             ======================================================== -->
+        <section id="viewAllResources" class="view-section">
+          <div class="section-header-row" style="margin-bottom: 1.5rem;">
+            <div>
+              <h1>All Learning Resources</h1>
+              <p>Explore our complete catalog of curated materials, exercises, audio, and reference documents.</p>
+            </div>
+          </div>
+
+          <!-- Multi-faceted Filter Bar -->
+          <div class="filter-bar">
+            <!-- Skill Filter -->
+            <div class="filter-row">
+              <span class="filter-label">Skill:</span>
+              <div class="filter-button-group" id="allSkillFilterGroup">
+                <button type="button" class="filter-btn active" data-skill="all">All Skills</button>
+                <button type="button" class="filter-btn" data-skill="reading">Reading</button>
+                <button type="button" class="filter-btn" data-skill="listening">Listening</button>
+                <button type="button" class="filter-btn" data-skill="writing">Writing</button>
+                <button type="button" class="filter-btn" data-skill="speaking">Speaking</button>
+                <button type="button" class="filter-btn" data-skill="vocabulary">Vocabulary</button>
+                <button type="button" class="filter-btn" data-skill="grammar">Grammar</button>
+              </div>
+            </div>
+
+            <!-- Level Filter -->
+            <div class="filter-row">
+              <span class="filter-label">Level:</span>
+              <div class="filter-button-group" id="allLevelFilterGroup">
+                <button type="button" class="filter-btn active" data-level="all">All Levels</button>
+                <button type="button" class="filter-btn" data-level="B2">B2</button>
+                <button type="button" class="filter-btn" data-level="C1">C1</button>
+                <button type="button" class="filter-btn" data-level="C2">C2</button>
+              </div>
+            </div>
+
+            <!-- Type Filter -->
+            <div class="filter-row">
+              <span class="filter-label">Type:</span>
+              <div class="filter-button-group" id="allTypeFilterGroup">
+                <button type="button" class="filter-btn active" data-type="all">All Types</button>
+                <button type="button" class="filter-btn" data-type="interactive">Interactive Exercises</button>
+                <button type="button" class="filter-btn" data-type="article">Articles</button>
+                <button type="button" class="filter-btn" data-type="video">Video & Audio</button>
+                <button type="button" class="filter-btn" data-type="pdf">PDFs</button>
+                <button type="button" class="filter-btn" data-type="external">External Tools</button>
+                <button type="button" class="filter-btn" data-type="practice">Practice Tasks</button>
+              </div>
+            </div>
+
+            <!-- Meta & Sort -->
+            <div class="filter-meta-row">
+              <span id="allResultCount">Showing 0 resources</span>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <label for="allSortSelect" style="font-size: 0.75rem;">Sort by:</label>
+                <select id="allSortSelect" class="sort-select">
+                  <option value="recommended">Recommended</option>
+                  <option value="title">Title (A–Z)</option>
+                  <option value="duration">Duration (Shortest)</option>
+                  <option value="difficulty">Difficulty</option>
+                </select>
+                <button type="button" id="allResetFiltersBtn" class="reset-filters-btn">Reset filters</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- All Resources Grid -->
+          <div class="resource-grid" id="allResourceGrid">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- ========================================================
+             4. PDF LIBRARY VIEW
+             ======================================================== -->
+        <section id="viewPdfLibrary" class="view-section">
+          <div class="section-header-row" style="margin-bottom: 1.5rem;">
+            <div>
+              <h1>PDF Learning Library</h1>
+              <p>Downloadable, printable worksheets, self-study guidelines, and exam-grade reference guides.</p>
+            </div>
+          </div>
+
+          <!-- Skill Filter for PDFs -->
+          <div class="filter-bar">
+            <div class="filter-row">
+              <span class="filter-label">Skill:</span>
+              <div class="filter-button-group" id="pdfSkillFilterGroup">
+                <button type="button" class="filter-btn active" data-skill="all">All Skills</button>
+                <button type="button" class="filter-btn" data-skill="reading">Reading</button>
+                <button type="button" class="filter-btn" data-skill="listening">Listening</button>
+                <button type="button" class="filter-btn" data-skill="writing">Writing</button>
+                <button type="button" class="filter-btn" data-skill="speaking">Speaking</button>
+                <button type="button" class="filter-btn" data-skill="vocabulary">Vocabulary</button>
+                <button type="button" class="filter-btn" data-skill="grammar">Grammar</button>
+              </div>
+            </div>
+            <div class="filter-meta-row">
+              <span id="pdfResultCount">Showing 0 worksheets</span>
+            </div>
+          </div>
+
+          <!-- PDF Grid -->
+          <div class="pdf-strip-grid" id="pdfLibraryGrid">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+        <!-- ========================================================
+             5. MY PROGRESS VIEW
+             ======================================================== -->
+        <section id="viewMyProgress" class="view-section">
+          <div class="section-header-row" style="margin-bottom: 1.5rem;">
+            <div>
+              <h1>My Learning Progress & Analytics</h1>
+              <p>Track your completed activities, test performance, and saved study items stored locally on your device.</p>
+            </div>
+            <button type="button" id="clearProgressBtn" class="secondary-card-btn" style="color: var(--accent-rose);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+              Clear saved progress
+            </button>
+          </div>
+
+          <!-- Detailed Progress Cards -->
+          <div class="stats-grid" style="margin-bottom: 2rem;">
+            <div class="stat-item subgrid-card">
+              <span class="stat-value" id="progTotalCompleted">0</span>
+              <span class="stat-label">Total Completed Items</span>
+            </div>
+            <div class="stat-item subgrid-card">
+              <span class="stat-value" id="progExercisesScored">0</span>
+              <span class="stat-label">Exercises Evaluated</span>
+            </div>
+            <div class="stat-item subgrid-card">
+              <span class="stat-value" id="progTotalBookmarks">0</span>
+              <span class="stat-label">Bookmarked Items</span>
+            </div>
+            <div class="stat-item subgrid-card">
+              <span class="stat-value" id="progEstStudyTime">0 hrs</span>
+              <span class="stat-label">Estimated Practice Time</span>
+            </div>
+          </div>
+
+          <!-- Skill Mastery Breakdown -->
+          <h2 class="section-title" style="margin-bottom: 1rem;">Skill Mastery Breakdown</h2>
+          <div class="subgrid-card" style="margin-bottom: 2.5rem; gap: 1.25rem;" id="progressSkillBars">
+            <!-- Populated dynamically -->
+          </div>
+
+          <!-- Bookmarked Resources -->
+          <div class="section-header-row">
+            <h2 class="section-title">Saved Resources Collection</h2>
+          </div>
+          <div class="resource-grid" id="progressBookmarksGrid" style="margin-bottom: 2.5rem;">
+            <!-- Rendered dynamically -->
+          </div>
+
+          <!-- Completed Exercises Review -->
+          <div class="section-header-row">
+            <h2 class="section-title">Completed Exercises History</h2>
+          </div>
+          <div class="resource-grid" id="progressCompletedGrid">
+            <!-- Rendered dynamically -->
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 1: REUSABLE EXERCISE RUNNER
+       ======================================================== -->
+  <div id="exerciseModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="exerciseModalTitle">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <div class="resource-meta-line" id="exerciseModalMeta"></div>
+          <h2 id="exerciseModalTitle">Interactive Exercise</h2>
+        </div>
+        <button id="closeExerciseModalBtn" class="modal-close-btn" aria-label="Close exercise">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-body" id="exerciseModalBody">
+        <!-- Content injected dynamically: questions, prompts, input fields -->
+      </div>
+
+      <div class="modal-footer" id="exerciseModalFooter">
+        <div id="exerciseScoreSummary" style="font-size: 0.875rem; font-weight: 600;"></div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" id="exerciseRetryBtn" class="secondary-card-btn" style="display: none;">Retry Exercise</button>
+          <button type="button" id="exerciseSubmitBtn" class="primary-card-btn">Submit Answers</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: PDF PREVIEW MODAL
+       ======================================================== -->
+  <div id="pdfModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
+    <div class="modal-dialog" style="max-width: 900px;">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h2 id="pdfModalTitle">PDF Preview</h2>
+          <div class="resource-meta-line" id="pdfModalMeta"></div>
+        </div>
+        <button id="closePdfModalBtn" class="modal-close-btn" aria-label="Close PDF preview">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 0.75rem;">
+        <iframe id="pdfPreviewFrame" class="pdf-preview-frame" title="PDF Document Viewer"></iframe>
+      </div>
+      <div class="modal-footer">
+        <span style="font-size: 0.8125rem; color: var(--text-muted);">PDF is stored locally in the EnglishPath library</span>
+        <a id="pdfModalDownloadBtn" href="#" download class="primary-card-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 3: CONFIRM CLEAR PROGRESS MODAL
+       ======================================================== -->
+  <div id="confirmClearModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="confirmClearTitle">
+    <div class="modal-dialog" style="max-width: 440px;">
+      <div class="modal-header">
+        <h2 id="confirmClearTitle" style="font-size: 1.125rem; color: var(--accent-rose);">Reset Saved Progress?</h2>
+        <button id="closeClearModalBtn" class="modal-close-btn" aria-label="Cancel">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This will erase your completed exercises, task statuses, scores, and saved bookmarks from this browser’s local storage. This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancelClearBtn" class="secondary-card-btn">Cancel</button>
+        <button type="button" id="executeClearBtn" class="primary-card-btn" style="background-color: var(--accent-rose);">Reset Everything</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: resources database first, then script application logic -->
+  <script src="resources.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
